@@ -13,7 +13,7 @@ export const profile = {
     school: "Vignan's University",
     years: '2019 – 2023',
   },
-  email: 'karthikeyamanchikalapudi55.com',
+  email: 'karthikeyamanchikalapudi55@gmail.com',
   socials: {
     github: 'https://github.com/Cassian25',
     linkedin: 'https://www.linkedin.com/in/karthikeya-manchikalapudi-0a3143196',

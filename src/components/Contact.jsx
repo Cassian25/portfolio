@@ -7,22 +7,53 @@ import { profile } from '../data/profile'
 export default function Contact() {
   const ref = useScrollReveal({ selector: '[data-reveal]', stagger: 0.09 })
   const [form, setForm] = useState({ name: '', email: '', message: '' })
+  // 'idle' | 'sending' | 'sent' | 'error'
   const [status, setStatus] = useState('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    const subject = encodeURIComponent(
-      `Hello from ${form.name || 'your portfolio'}`
-    )
-    const body = encodeURIComponent(
-      `${form.message}\n\n— ${form.name}${form.email ? ` (${form.email})` : ''}`
-    )
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
-    setTimeout(() => setStatus('sent'), 400)
+    setErrorMsg('')
+
+    // Honeypot: real users can't fill a hidden field; bots usually do.
+    if (e.target._honey && e.target._honey.value) {
+      setStatus('sent') // silently drop
+      return
+    }
+
+    try {
+      const res = await fetch(
+        `https://formsubmit.co/ajax/${profile.email}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            message: form.message,
+            _subject: `Portfolio contact from ${form.name}`,
+            _template: 'table',
+            _captcha: 'false',
+          }),
+        }
+      )
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || data.success === 'false') {
+        throw new Error(data.message || 'Something went wrong. Please try again.')
+      }
+      setStatus('sent')
+      setForm({ name: '', email: '', message: '' })
+    } catch (err) {
+      setStatus('error')
+      setErrorMsg(err.message || 'Could not send. Please email me directly.')
+    }
   }
 
   return (
@@ -78,7 +109,7 @@ export default function Contact() {
             <li data-reveal>
               <a
                 href={profile.socials.linkedin}
-                target="https://www.linkedin.com/in/karthikeya-manchikalapudi-0a3143196/"
+                target="_blank"
                 rel="noreferrer"
                 className="card p-4 sm:p-5 flex items-center gap-3 sm:gap-4 group"
               >
@@ -100,7 +131,7 @@ export default function Contact() {
             <li data-reveal>
               <a
                 href={profile.socials.github}
-                target="hhttps://github.com/Cassian25/portfolio"
+                target="_blank"
                 rel="noreferrer"
                 className="card p-4 sm:p-5 flex items-center gap-3 sm:gap-4 group"
               >
@@ -128,6 +159,15 @@ export default function Contact() {
           className="card p-5 sm:p-8 relative"
           aria-label="Contact form"
         >
+       
+          <input
+            type="text"
+            name="_honey"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: 'absolute', left: '-9999px', opacity: 0 }}
+          />
           <div className="grid gap-4 sm:gap-5">
             <label className="grid gap-2">
               <span className="text-xs uppercase tracking-widest text-slate-500 font-mono">
@@ -182,7 +222,7 @@ export default function Contact() {
               disabled={status === 'sending'}
               className="btn btn-primary w-full xs:w-auto justify-self-stretch xs:justify-self-start disabled:opacity-60"
             >
-              {status === 'sending' ? 'Opening mail…' : 'Send message'}
+              {status === 'sending' ? 'Sending…' : 'Send message'}
               <HiArrowRight aria-hidden="true" />
             </button>
 
@@ -191,7 +231,17 @@ export default function Contact() {
                 role="status"
                 className="text-sm text-emerald-300"
               >
-                Your mail client should be open. If not, email me directly at{' '}
+                Thanks — your message is on its way. I&apos;ll reply within a
+                couple of days.
+              </p>
+            )}
+
+            {status === 'error' && (
+              <p
+                role="alert"
+                className="text-sm text-rose-300"
+              >
+                {errorMsg} You can also email me directly at{' '}
                 <a
                   href={`mailto:${profile.email}`}
                   className="underline"

@@ -19,7 +19,6 @@ export default function Contact() {
     setStatus('sending')
     setErrorMsg('')
 
-    // Honeypot: real users can't fill a hidden field; bots usually do.
     if (e.target._honey && e.target._honey.value) {
       setStatus('sent') // silently drop
       return

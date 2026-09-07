@@ -44,11 +44,11 @@ jobs:
         run: cp dist/index.html dist/404.html
 
       - name: Setup Pages
+        # Pages must be enabled once manually at:
+        #   Settings → Pages → Source: "GitHub Actions"
+        # The GITHUB_TOKEN cannot create the Pages site itself
+        # (results in: "Resource not accessible by integration").
         uses: actions/configure-pages@v6
-        with:
-          # Auto-enable GitHub Pages for this repo if it hasn't been enabled yet.
-          # This fixes: "Get Pages site failed ... Not Found".
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

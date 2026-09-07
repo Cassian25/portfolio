@@ -89,7 +89,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={rootRef}
-      className="relative min-h-[100svh] flex items-center overflow-hidden pt-24"
+      className="relative min-h-[100svh] flex items-center overflow-hidden pt-24 pb-24 sm:pb-28"
       aria-label="Introduction"
     >
       <div className="absolute inset-0 -z-10">
@@ -114,22 +114,22 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink-950" />
       </div>
 
-      <div className="container-max px-4 md:px-8 w-full">
+      <div className="container-max px-4 sm:px-6 md:px-8 w-full">
         <div className="max-w-4xl">
-          <span data-hero-eyebrow className="eyebrow mb-8">
+          <span data-hero-eyebrow className="eyebrow mb-6 sm:mb-8">
             <span>Portfolio · 2026</span>
           </span>
 
           <h1
             ref={nameRef}
-            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold leading-[1.02] tracking-tight text-white"
+            className="font-display text-[clamp(2.25rem,10vw,6rem)] sm:text-6xl md:text-7xl lg:text-8xl font-semibold leading-[1.05] sm:leading-[1.02] tracking-tight text-white break-words"
           >
             {profile.name}
           </h1>
 
           <p
             data-hero-sub
-            className="mt-4 font-display text-2xl sm:text-3xl md:text-4xl font-medium"
+            className="mt-3 sm:mt-4 font-display text-xl sm:text-3xl md:text-4xl font-medium"
           >
             <span className="text-gradient">{profile.role}</span>
             <span className="text-slate-400"> — {profile.focus}</span>
@@ -137,12 +137,12 @@ export default function Hero() {
 
           <p
             data-hero-tagline
-            className="mt-6 max-w-2xl text-base sm:text-lg text-slate-400 leading-relaxed"
+            className="mt-5 sm:mt-6 max-w-2xl text-sm sm:text-lg text-slate-400 leading-relaxed"
           >
             {profile.tagline}
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-3 sm:gap-4">
             <a
               ref={primaryCtaRef}
               data-hero-cta
@@ -171,7 +171,7 @@ export default function Hero() {
             </a>
           </div>
 
-          <ul className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl text-sm">
+          <ul className="mt-10 sm:mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-3xl text-sm">
             {[
               ['Experience', `${profile.yearsExperience} yrs`],
               ['Current', profile.currentCompany],
@@ -191,7 +191,7 @@ export default function Hero() {
 
       <div
         data-hero-scroll
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs text-slate-500 font-mono"
+        className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-xs text-slate-500 font-mono"
         aria-hidden="true"
       >
         <span className="tracking-widest uppercase">Scroll</span>

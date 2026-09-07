@@ -53,7 +53,7 @@ export default function Navbar() {
       ].join(' ')}
     >
       <nav
-        className="container-max flex items-center justify-between h-16 px-4 md:px-8"
+        className="container-max flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6 md:px-8"
         aria-label="Primary"
       >
         <a
@@ -63,9 +63,9 @@ export default function Navbar() {
             handleNav('#hero')
           }}
           data-nav-logo
-          className="group flex items-center gap-2 font-display font-semibold text-white"
+          className="group flex items-center gap-2 font-display font-semibold text-white text-sm sm:text-base"
         >
-          <span className="grid place-items-center w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-cyan-neon shadow-glow">
+          <span className="grid place-items-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-accent to-cyan-neon shadow-glow">
             <span className="font-mono text-xs">K</span>
           </span>
           <span className="tracking-tight">
@@ -137,7 +137,7 @@ export default function Navbar() {
           open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0',
         ].join(' ')}
       >
-        <ul className="flex flex-col gap-1 px-4 pb-4 pt-2 bg-ink-900/90 backdrop-blur border-t border-white/5">
+        <ul className="flex flex-col gap-1 px-4 pb-4 pt-2 bg-ink-900/95 backdrop-blur border-t border-white/5">
           {NAV_ITEMS.map((item) => (
             <li key={item.href}>
               <a
@@ -152,6 +152,18 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+          <li className="pt-2">
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault()
+                handleNav('#contact')
+              }}
+              className="btn btn-primary w-full"
+            >
+              Let&apos;s talk
+            </a>
+          </li>
         </ul>
       </div>
     </header>

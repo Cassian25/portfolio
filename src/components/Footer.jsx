@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-white/5 mt-10">
-      <div className="container-max px-4 md:px-8 py-8 sm:py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="container-max px-4 sm:px-6 md:px-8 py-8 sm:py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="text-sm text-slate-500 text-center sm:text-left">
           <span className="font-display text-slate-300">
             {profile.name}

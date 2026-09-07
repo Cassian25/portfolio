@@ -23,7 +23,7 @@ export default function About() {
       className="section relative"
       aria-labelledby="about-heading"
     >
-      <div className="container-max grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-12 lg:gap-20">
+      <div className="container-max grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-10 sm:gap-12 lg:gap-20">
         <div>
           <span data-reveal className="eyebrow">
             <span>01 · About</span>
@@ -32,7 +32,7 @@ export default function About() {
           <h2
             id="about-heading"
             data-reveal
-            className="mt-6 font-display text-4xl md:text-5xl font-semibold leading-tight text-white"
+            className="mt-6 font-display text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-white"
           >
             Software that talks to the{' '}
             <span className="text-gradient">physical world</span>.
@@ -70,24 +70,24 @@ export default function About() {
             Tech I work with
           </div>
 
-          <ul className="grid grid-cols-3 sm:grid-cols-3 gap-3">
+          <ul className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-3 gap-2.5 sm:gap-3">
             {skills.map(({ name, Icon, color }) => (
               <li
                 key={name}
                 data-reveal
-                className="card p-4 flex flex-col items-center justify-center text-center gap-3 aspect-square group"
+                className="card p-3 sm:p-4 flex flex-col items-center justify-center text-center gap-2 sm:gap-3 aspect-square group"
               >
                 <Icon
                   aria-hidden="true"
-                  className="w-8 h-8 md:w-9 md:h-9 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6"
+                  className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6"
                   style={{ color }}
                 />
-                <span className="text-sm text-slate-200">{name}</span>
+                <span className="text-xs sm:text-sm text-slate-200">{name}</span>
               </li>
             ))}
           </ul>
 
-          <ul className="mt-8 grid grid-cols-2 gap-3 text-sm">
+          <ul className="mt-6 sm:mt-8 grid grid-cols-1 xs:grid-cols-2 gap-3 text-sm">
             <li data-reveal className="card p-4">
               <div className="text-slate-500 text-xs uppercase tracking-widest font-mono">
                 Domains

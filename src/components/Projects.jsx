@@ -57,7 +57,7 @@ function ProjectCard({ project, index }) {
   return (
     <article
       ref={setRefs}
-      className="card group relative p-6 sm:p-8 md:p-10 overflow-hidden"
+      className="card group relative p-5 sm:p-8 md:p-10 overflow-hidden"
       aria-labelledby={`project-${project.id}-title`}
     >
       <div
@@ -76,37 +76,37 @@ function ProjectCard({ project, index }) {
         }}
       />
 
-      <div className="relative grid md:grid-cols-[auto_1fr] gap-6 md:gap-10 items-start">
+      <div className="relative grid md:grid-cols-[auto_1fr] gap-4 md:gap-10 items-start">
         <div className="flex items-start gap-4">
           <span
             aria-hidden="true"
-            className="font-mono text-sm text-slate-500 mt-1"
+            className="font-mono text-xs sm:text-sm text-slate-500 mt-1"
           >
             {String(index + 1).padStart(2, '0')}
           </span>
         </div>
 
         <div>
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-4">
+            <div className="min-w-0">
               <h3
                 id={`project-${project.id}-title`}
-                className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-white tracking-tight"
+                className="font-display text-xl sm:text-3xl md:text-4xl font-semibold text-white tracking-tight break-words"
               >
                 {project.title}
               </h3>
-              <p className="mt-1 text-sm sm:text-base text-accent-soft">
+              <p className="mt-1 text-sm sm:text-base text-accent-soft break-words">
                 {project.subtitle}
               </p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {project.github && (
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn btn-ghost text-sm px-3 py-1.5"
+                  className="btn btn-ghost text-xs sm:text-sm px-3 py-1.5"
                   aria-label={`${project.title} on GitHub`}
                 >
                   <FaGithub aria-hidden="true" />
@@ -118,7 +118,7 @@ function ProjectCard({ project, index }) {
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn btn-primary text-sm px-3 py-1.5"
+                  className="btn btn-primary text-xs sm:text-sm px-3 py-1.5"
                   aria-label={`${project.title} live demo`}
                 >
                   Live
@@ -128,20 +128,20 @@ function ProjectCard({ project, index }) {
             </div>
           </div>
 
-          <p className="mt-6 text-slate-300 leading-relaxed max-w-3xl">
+          <p className="mt-5 sm:mt-6 text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl">
             {project.description}
           </p>
 
           {project.highlights?.length > 0 && (
-            <ul className="mt-6 grid gap-2 max-w-3xl">
+            <ul className="mt-5 sm:mt-6 grid gap-2 max-w-3xl">
               {project.highlights.map((h) => (
                 <li
                   key={h}
-                  className="flex items-start gap-3 text-sm text-slate-400"
+                  className="flex items-start gap-3 text-xs sm:text-sm text-slate-400"
                 >
                   <span
                     aria-hidden="true"
-                    className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0"
+                    className="mt-1.5 sm:mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0"
                   />
                   <span>{h}</span>
                 </li>
@@ -149,7 +149,7 @@ function ProjectCard({ project, index }) {
             </ul>
           )}
 
-          <ul className="mt-8 flex flex-wrap gap-2">
+          <ul className="mt-6 sm:mt-8 flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <li
                 key={tag}
@@ -200,21 +200,21 @@ export default function Projects() {
           <h2
             id="projects-heading"
             data-projects-title
-            className="mt-6 font-display text-4xl md:text-5xl font-semibold leading-tight text-white"
+            className="mt-6 font-display text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-white"
           >
             Projects that shipped in{' '}
             <span className="text-gradient">the real world</span>.
           </h2>
           <p
             data-projects-lede
-            className="mt-5 text-slate-400 text-base sm:text-lg leading-relaxed"
+            className="mt-4 sm:mt-5 text-slate-400 text-sm sm:text-lg leading-relaxed"
           >
             A handful of the systems I&apos;ve built or contributed to — from
             fleet-scale telemetry to safety-critical control interfaces.
           </p>
         </header>
 
-        <div className="mt-14 grid gap-8">
+        <div className="mt-10 sm:mt-14 grid gap-6 sm:gap-8">
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} />
           ))}

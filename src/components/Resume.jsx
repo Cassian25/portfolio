@@ -17,7 +17,7 @@ export default function Resume() {
       aria-labelledby="resume-heading"
     >
       <div className="container-max">
-        <div className="card p-8 md:p-14 relative overflow-hidden">
+        <div className="card p-6 sm:p-8 md:p-14 relative overflow-hidden">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -top-32 -right-24 w-[420px] h-[420px] rounded-full bg-accent/20 blur-3xl"
@@ -27,7 +27,7 @@ export default function Resume() {
             className="pointer-events-none absolute -bottom-32 -left-24 w-[380px] h-[380px] rounded-full bg-cyan-neon/15 blur-3xl"
           />
 
-          <div className="relative grid lg:grid-cols-[minmax(0,1fr)_auto] gap-10 items-center">
+          <div className="relative grid lg:grid-cols-[minmax(0,1fr)_auto] gap-8 sm:gap-10 items-center">
             <div>
               <span data-reveal className="eyebrow">
                 <span>03 · Resume</span>
@@ -35,21 +35,21 @@ export default function Resume() {
               <h2
                 id="resume-heading"
                 data-reveal
-                className="mt-6 font-display text-4xl md:text-5xl font-semibold leading-tight text-white"
+                className="mt-6 font-display text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-white"
               >
                 The <span className="text-gradient">short version</span>, in a
                 PDF.
               </h2>
               <p
                 data-reveal
-                className="mt-5 max-w-xl text-slate-300 leading-relaxed"
+                className="mt-4 sm:mt-5 max-w-xl text-sm sm:text-base text-slate-300 leading-relaxed"
               >
                 Download the latest resume or preview it inline. Includes work
                 history, education, and the tech I&apos;ve shipped with in
                 production.
               </p>
 
-              <div data-reveal className="mt-8 flex flex-wrap gap-3">
+              <div data-reveal className="mt-6 sm:mt-8 flex flex-wrap gap-3">
                 <a
                   href={resumeHref}
                   download
@@ -73,7 +73,7 @@ export default function Resume() {
 
               <dl
                 data-reveal
-                className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-4 text-sm"
+                className="mt-8 sm:mt-10 grid grid-cols-1 xs:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-4 text-sm"
               >
                 <div className="border-l border-white/10 pl-4">
                   <dt className="text-xs uppercase tracking-widest text-slate-500 font-mono">
@@ -135,21 +135,21 @@ export default function Resume() {
           role="dialog"
           aria-modal="true"
           aria-label="Resume preview"
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-ink-950/85 backdrop-blur-md animate-[fadein_0.25s_ease-out]"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 md:p-8 bg-ink-950/85 backdrop-blur-md animate-[fadein_0.25s_ease-out]"
           onClick={(e) => {
             if (e.target === e.currentTarget) setPreviewOpen(false)
           }}
         >
-          <div className="relative w-full max-w-5xl h-[85vh] bg-ink-900 rounded-2xl border border-white/10 overflow-hidden shadow-card">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-ink-800">
-              <div className="text-sm text-slate-300 font-mono">
+          <div className="relative w-full max-w-5xl h-[90vh] sm:h-[85vh] bg-ink-900 rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden shadow-card">
+            <div className="flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 border-b border-white/10 bg-ink-800 gap-2">
+              <div className="text-xs sm:text-sm text-slate-300 font-mono truncate">
                 resume.pdf — preview
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 shrink-0">
                 <a
                   href={resumeHref}
                   download
-                  className="btn btn-ghost text-xs px-3 py-1.5"
+                  className="btn btn-ghost text-xs px-3 py-1.5 hidden xs:inline-flex"
                 >
                   <HiArrowDownTray aria-hidden="true" />
                   Download
@@ -167,7 +167,7 @@ export default function Resume() {
             <object
               data={resumeHref}
               type="application/pdf"
-              className="w-full h-[calc(100%-49px)]"
+              className="w-full h-[calc(100%-45px)] sm:h-[calc(100%-49px)]"
               aria-label="Embedded resume PDF"
             >
               <div className="p-10 text-center text-slate-400">

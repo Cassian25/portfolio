@@ -21,12 +21,31 @@ body {
     Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
   min-width: 320px;
+}
+
+/* Prevent long unbroken strings from blowing out narrow screens. */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Bigger tap targets on mobile without upscaling on desktop. */
+@media (max-width: 640px) {
+  .btn {
+    padding: 0.65rem 1.1rem;
+    font-size: 0.85rem;
+  }
 }
 
 .font-display {
@@ -75,6 +94,13 @@ body {
   max-width: 1200px;
   margin-inline: auto;
   width: 100%;
+}
+
+/* Respect iOS notches / rounded corners on very small screens. */
+@supports (padding: max(0px)) {
+  .section {
+    padding-inline: max(clamp(1rem, 5vw, 3rem), env(safe-area-inset-left));
+  }
 }
 
 .grid-bg {

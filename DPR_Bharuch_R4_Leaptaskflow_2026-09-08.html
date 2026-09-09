@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPR — Bharuch_R4_Leaptaskflow — 08 Sept 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-dark: #1e3a5f;
+      --brand-blue: #1e40af;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --amber: #d97706;
+      --amber-bg: #fffbeb;
+      --green: #16a34a;
+      --green-bg: #ecfdf5;
+      --blue-pill: #dbeafe;
+      --red-pill: #fee2e2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 11px;
+      line-height: 1.45;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 12px auto;
+      background: var(--card);
+      box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+      padding: 14mm 16mm 12mm;
+      page-break-after: always;
+      position: relative;
+    }
+
+    .page:last-child { page-break-after: auto; }
+
+    .banner {
+      background: linear-gradient(135deg, var(--brand-dark) 0%, #2d4a6f 100%);
+      color: #fff;
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .banner-left h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .banner-left .subtitle {
+      font-size: 10px;
+      opacity: 0.85;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .banner-left .project {
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .banner-right {
+      text-align: right;
+      font-size: 10px;
+      opacity: 0.9;
+    }
+
+    .banner-right .date { font-size: 13px; font-weight: 600; }
+
+    .alert-bar {
+      background: var(--red-bg);
+      border-left: 4px solid var(--red);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #991b1b;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 180px 1fr 160px;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .health-card {
+      background: var(--card);
+      border: 2px solid var(--amber);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .health-ring {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: conic-gradient(var(--amber) 0deg 187deg, #e2e8f0 187deg 360deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .health-ring-inner {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .health-score {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+    }
+
+    .health-of { font-size: 9px; color: var(--muted); }
+
+    .health-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--amber);
+      margin-top: 4px;
+    }
+
+    .health-sub { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+    .delays-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .delays-panel h3 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--red);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .delay-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .delay-item:last-child { border-bottom: none; }
+
+    .delay-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 6px;
+      border-radius: 6px;
+      text-align: center;
+      align-self: start;
+    }
+
+    .delay-badge.critical { background: var(--red); color: #fff; }
+    .delay-badge.warning { background: var(--amber-bg); color: var(--amber); border: 1px solid #fcd34d; }
+
+    .delay-title { font-weight: 600; font-size: 10px; line-height: 1.35; }
+    .delay-meta { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+    .people-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 10px;
+    }
+
+    .people-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .people-row:last-child { border-bottom: none; }
+    .people-row span:first-child { color: var(--muted); font-size: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .people-row span:last-child { font-weight: 600; text-align: right; max-width: 55%; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      border-top: 3px solid var(--border);
+    }
+
+    .kpi.danger { border-top-color: var(--red); }
+    .kpi.warn { border-top-color: var(--amber); }
+    .kpi.neutral { border-top-color: var(--muted); }
+    .kpi.ok { border-top-color: var(--green); }
+
+    .kpi-icon { font-size: 14px; margin-bottom: 4px; }
+    .kpi-value { font-size: 22px; font-weight: 700; line-height: 1.1; }
+    .kpi-value.small { font-size: 16px; }
+    .kpi-label { font-size: 8px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-top: 4px; }
+    .kpi-sub { font-size: 9px; color: var(--muted); margin-top: 2px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .panel h3 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--brand-blue);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-name {
+      font-size: 9px;
+      font-weight: 600;
+      min-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill { height: 100%; border-radius: 4px; }
+    .progress-fill.low { background: var(--red); width: 64%; }
+    .progress-fill.mid { background: var(--amber); width: 78%; }
+
+    .section-meta { font-size: 9px; color: var(--muted); white-space: nowrap; }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .status-item {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 8px 10px;
+      text-align: center;
+    }
+
+    .status-item .num { font-size: 18px; font-weight: 700; }
+    .status-item .lbl { font-size: 8px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+    .status-item .pct { font-size: 9px; color: var(--muted); }
+
+    .pulse-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .pulse {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .pulse .val { font-size: 20px; font-weight: 700; }
+    .pulse .lbl { font-size: 8px; color: var(--muted); text-transform: uppercase; }
+    .pulse .chg { font-size: 9px; color: var(--muted); }
+
+    .success-box {
+      background: var(--green-bg);
+      border: 1px solid #86efac;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .success-box h3 { color: var(--green); font-size: 12px; margin-bottom: 4px; }
+    .success-box p { font-size: 10px; color: #166534; }
+
+    .delay-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .delay-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      border-left: 4px solid var(--amber);
+    }
+
+    .delay-card.severe { border-left-color: var(--red); background: var(--red-bg); }
+
+    .delay-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .delay-card-title { font-weight: 600; font-size: 10px; line-height: 1.35; }
+
+    .site-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .photo-placeholder {
+      background: linear-gradient(145deg, #cbd5e1, #94a3b8);
+      border-radius: 10px;
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 10px;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .photo-placeholder .icon { font-size: 28px; margin-bottom: 4px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9px;
+    }
+
+    thead th {
+      background: var(--brand-dark);
+      color: #fff;
+      font-weight: 600;
+      text-align: left;
+      padding: 6px 8px;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) { background: #f8fafc; }
+
+    .empty-state {
+      font-style: italic;
+      color: var(--muted);
+      padding: 10px 8px;
+      font-size: 9px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .pill.progress { background: var(--blue-pill); color: #1d4ed8; }
+    .pill.blocked { background: var(--red-pill); color: #b91c1c; }
+    .pill.idle { background: #f1f5f9; color: var(--muted); }
+
+    .delay-tag {
+      font-weight: 700;
+      color: var(--red);
+      font-size: 9px;
+    }
+
+    .section-header-row {
+      background: #e2e8f0 !important;
+      font-weight: 700;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .section-header-row td { padding: 8px; border-bottom: 2px solid #cbd5e1; }
+
+    .mini-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .mini-panel {
+      background: #f8fafc;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .mini-panel strong { color: var(--text); display: block; margin-bottom: 4px; font-size: 10px; }
+
+    .footer {
+      position: absolute;
+      bottom: 10mm;
+      left: 16mm;
+      right: 16mm;
+      font-size: 8px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .page-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .page-title-row h2 { font-size: 14px; color: var(--brand-dark); }
+    .page-title-row span { font-size: 10px; color: var(--muted); }
+
+    @media print {
+      body { background: #fff; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        min-height: auto;
+        page-break-after: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1 — EXECUTIVE BRIEFING -->
+<section class="page">
+  <header class="banner">
+    <div class="banner-left">
+      <h1>Daily Progress Report</h1>
+      <div class="subtitle">LEAP INDIA · Site Operations Briefing</div>
+      <div class="project">Bharuch_R4_Leaptaskflow</div>
+    </div>
+    <div class="banner-right">
+      <div class="date">Tue, 08 Sept, 2026</div>
+      <div>Generated 08 Sept 2026, 09:51 am</div>
+    </div>
+  </header>
+
+  <div class="alert-bar">
+    Schedule at risk — immediate intervention required. · 0 workers onsite · 0 activities moved today · 7 blockers open.
+  </div>
+
+  <div class="hero">
+    <div class="health-card">
+      <div class="health-ring">
+        <div class="health-ring-inner">
+          <span class="health-score">52</span>
+          <span class="health-of">of 100</span>
+        </div>
+      </div>
+      <div class="health-label">Needs Attention</div>
+      <div class="health-sub">Slipping — action needed.</div>
+    </div>
+
+    <div class="delays-panel">
+      <h3>⚠ Top 5 of 7 Late Tasks — Requires immediate attention</h3>
+      <div class="delay-item">
+        <span class="delay-badge critical">+199</span>
+        <div>
+          <div class="delay-title">Ramp (Excavation, Levelling, GSB, Compaction, Brickwork, PCC&amp;CC)</div>
+          <div class="delay-meta">3 - Project Execution · Unassigned · Past planned start date — work not yet begun</div>
+        </div>
+      </div>
+      <div class="delay-item">
+        <span class="delay-badge warning">+7</span>
+        <div>
+          <div class="delay-title">Advance Payment</div>
+          <div class="delay-meta">2 - Concession Development Phase · Unassigned · Past planned start date — work not yet begun</div>
+        </div>
+      </div>
+      <div class="delay-item">
+        <span class="delay-badge warning">+7</span>
+        <div>
+          <div class="delay-title">Release of Order (Cost Comparision , NFA &amp; PO/SO Approvals)</div>
+          <div class="delay-meta">2 - Concession Development Phase · Unassigned · Blocked by: Advance Payment</div>
+        </div>
+      </div>
+      <div class="delay-item">
+        <span class="delay-badge warning">+7</span>
+        <div>
+          <div class="delay-title">Advance Payment</div>
+          <div class="delay-meta">2 - Concession Development Phase · Unassigned · Past planned start date — work not yet begun</div>
+        </div>
+      </div>
+      <div class="delay-item">
+        <span class="delay-badge warning">+7</span>
+        <div>
+          <div class="delay-title">Fire Fighting System with BOQ</div>
+          <div class="delay-meta">2 - Concession Development Phase · Unassigned · Past planned start date — work not yet begun</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="people-card">
+      <div class="people-row"><span>Project Manager</span><span>Prasant Jaiswal</span></div>
+      <div class="people-row"><span>Cluster Head</span><span>—</span></div>
+      <div class="people-row"><span>Site Team</span><span>0 crew</span></div>
+      <div class="people-row"><span>Weather</span><span>Drizzle · 33°C / 27°C</span></div>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi danger">
+      <div class="kpi-icon">📈</div>
+      <div class="kpi-value">0.03</div>
+      <div class="kpi-label">Schedule SPI</div>
+      <div class="kpi-sub">Behind plan</div>
+    </div>
+    <div class="kpi warn">
+      <div class="kpi-icon">📊</div>
+      <div class="kpi-value">2%</div>
+      <div class="kpi-label">Average Progress</div>
+      <div class="kpi-sub">across 11 active</div>
+    </div>
+    <div class="kpi neutral">
+      <div class="kpi-icon">👷</div>
+      <div class="kpi-value">0</div>
+      <div class="kpi-label">Manpower Today</div>
+      <div class="kpi-sub">no data for yesterday · 1 report</div>
+    </div>
+    <div class="kpi danger">
+      <div class="kpi-icon">⛔</div>
+      <div class="kpi-value">7</div>
+      <div class="kpi-label">Open Blockers</div>
+      <div class="kpi-sub">1 overdue · 6 not started yet</div>
+    </div>
+    <div class="kpi neutral">
+      <div class="kpi-icon">⏰</div>
+      <div class="kpi-value">0</div>
+      <div class="kpi-label">Slipped Activities</div>
+      <div class="kpi-sub">started, past planned finish</div>
+    </div>
+    <div class="kpi neutral">
+      <div class="kpi-icon">⚡</div>
+      <div class="kpi-value">0</div>
+      <div class="kpi-label">Moved Today</div>
+      <div class="kpi-sub">logged quantity</div>
+    </div>
+    <div class="kpi ok">
+      <div class="kpi-icon">✓</div>
+      <div class="kpi-value small">446 / 1135</div>
+      <div class="kpi-label">Completed</div>
+      <div class="kpi-sub">of 1135 tasks</div>
+    </div>
+    <div class="kpi neutral">
+      <div class="kpi-icon">🏗</div>
+      <div class="kpi-value">11</div>
+      <div class="kpi-label">Active Activities</div>
+      <div class="kpi-sub">2 sections</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="panel">
+      <h3>A · Section Progress — 2 sections · sorted worst SPI first</h3>
+      <div class="section-bar">
+        <span class="section-name">2 - Concession Development…</span>
+        <div class="progress-track"><div class="progress-fill low"></div></div>
+        <span class="section-meta">⛔ 6 · 64%</span>
+      </div>
+      <div class="section-bar">
+        <span class="section-name">3 - Project Execution</span>
+        <div class="progress-track"><div class="progress-fill mid"></div></div>
+        <span class="section-meta">⛔ 1 · 78%</span>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>B · Activity Status Mix — 11 active leaves split by start status</h3>
+      <div class="status-grid">
+        <div class="status-item">
+          <div class="num">4</div>
+          <div class="lbl">Started On Time</div>
+          <div class="pct">36% of 11</div>
+        </div>
+        <div class="status-item">
+          <div class="num">0</div>
+          <div class="lbl">Started Early</div>
+          <div class="pct">0% of 11</div>
+        </div>
+        <div class="status-item">
+          <div class="num">0</div>
+          <div class="lbl">Started Late</div>
+          <div class="pct">0% of 11</div>
+        </div>
+        <div class="status-item">
+          <div class="num">9</div>
+          <div class="lbl">Not Started Yet</div>
+          <div class="pct">82% of 11</div>
+        </div>
+        <div class="status-item">
+          <div class="num">0</div>
+          <div class="lbl">Overdue</div>
+          <div class="pct">0% of 11</div>
+        </div>
+        <div class="status-item">
+          <div class="num">0</div>
+          <div class="lbl">Critical Behind</div>
+          <div class="pct">0% of 11</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Today's Pulse</h3>
+    <div class="pulse-row">
+      <div class="pulse"><div class="val">0</div><div class="lbl">Started Today</div><div class="chg">→ No change</div></div>
+      <div class="pulse"><div class="val">0</div><div class="lbl">Completed Today</div><div class="chg">→ No change</div></div>
+      <div class="pulse"><div class="val">0</div><div class="lbl">Manpower</div><div class="chg">→ No change</div></div>
+      <div class="pulse"><div class="val">0</div><div class="lbl">New Blockers</div><div class="chg">→ No change</div></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>Section 1 · Briefing · KPIs · Section &amp; Status Mix</span>
+    <span>Bharuch_R4_Leaptaskflow · Tue, 08 Sept, 2026</span>
+  </footer>
+</section>
+
+<!-- PAGE 2 — CRITICAL PATH, DELAYS & SITE -->
+<section class="page">
+  <div class="page-title-row">
+    <h2>Critical Path &amp; Delays</h2>
+    <span>Tue, 08 Sept, 2026 · Bharuch_R4_Leaptaskflow</span>
+  </div>
+
+  <div class="success-box">
+    <h3>✓ A · Critical-path activities behind schedule — 0 of 4 critical-path tasks slipping</h3>
+    <p>No critical-path activities are behind schedule today — the critical chain is on track.</p>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px;">
+    <h3>B · Delayed Activities · Ranked by Days Behind — 7 delayed · reasons named · dependencies surfaced</h3>
+  </div>
+
+  <div class="delay-cards">
+    <div class="delay-card severe">
+      <div class="delay-card-header">
+        <div class="delay-card-title">Ramp (Excavation, Levelling, GSB, Compaction, Brickwork, PCC&amp;CC)</div>
+        <span class="delay-badge critical">+199d</span>
+      </div>
+      <div class="delay-meta">3 - Project Execution · Unassigned</div>
+      <div class="delay-meta">⏰ Past planned start date — work not yet begun</div>
+      <div class="delay-meta">Plan: 21 Feb → 21 Feb · Progress: 0%</div>
+    </div>
+    <div class="delay-card">
+      <div class="delay-card-header">
+        <div class="delay-card-title">Advance Payment</div>
+        <span class="delay-badge warning">+7d</span>
+      </div>
+      <div class="delay-meta">2 - Concession Development Phase · Unassigned</div>
+      <div class="delay-meta">⏰ Past planned start date — work not yet begun</div>
+      <div class="delay-meta">Plan: 01 Sept → 14 Sept · Progress: 0%</div>
+    </div>
+    <div class="delay-card">
+      <div class="delay-card-header">
+        <div class="delay-card-title">Release of Order (Cost Comparision , NFA &amp; PO/SO Approvals)</div>
+        <span class="delay-badge warning">+7d</span>
+      </div>
+      <div class="delay-meta">2 - Concession Development Phase · Unassigned</div>
+      <div class="delay-meta">🔗 Blocked by: Advance Payment</div>
+      <div class="delay-meta">Plan: 01 Sept → 20 Sept · Progress: 0%</div>
+    </div>
+    <div class="delay-card">
+      <div class="delay-card-header">
+        <div class="delay-card-title">Advance Payment</div>
+        <span class="delay-badge warning">+7d</span>
+      </div>
+      <div class="delay-meta">2 - Concession Development Phase · Unassigned</div>
+      <div class="delay-meta">⏰ Past planned start date — work not yet begun</div>
+      <div class="delay-meta">Plan: 01 Sept → 14 Sept · Progress: 0%</div>
+    </div>
+    <div class="delay-card">
+      <div class="delay-card-header">
+        <div class="delay-card-title">Fire Fighting System with BOQ</div>
+        <span class="delay-badge warning">+7d</span>
+      </div>
+      <div class="delay-meta">2 - Concession Development Phase · Unassigned</div>
+      <div class="delay-meta">⏰ Past planned start date — work not yet begun</div>
+      <div class="delay-meta">Plan: 01 Sept → 08 Sept · Progress: 0%</div>
+    </div>
+    <div class="delay-card">
+      <div class="delay-card-header">
+        <div class="delay-card-title">Power Connection - Application &amp; Approval</div>
+        <span class="delay-badge warning">+7d</span>
+      </div>
+      <div class="delay-meta">2 - Concession Development Phase · Unassigned</div>
+      <div class="delay-meta">⏰ Past planned start date — work not yet begun</div>
+      <div class="delay-meta">Plan: 01 Sept → 30 Sept · Progress: 0%</div>
+    </div>
+    <div class="delay-card">
+      <div class="delay-card-header">
+        <div class="delay-card-title">NoC - Initial - Application &amp; Approval</div>
+        <span class="delay-badge warning">+7d</span>
+      </div>
+      <div class="delay-meta">2 - Concession Development Phase · Unassigned</div>
+      <div class="delay-meta">⏰ Past planned start date — work not yet begun</div>
+      <div class="delay-meta">Plan: 01 Sept → 15 Sept · Progress: 0%</div>
+    </div>
+  </div>
+
+  <div class="page-title-row" style="margin-top:8px;">
+    <h2>Site Overview</h2>
+    <span>Tue, 08 Sept, 2026</span>
+  </div>
+
+  <div class="site-grid">
+    <div>
+      <div class="photo-placeholder">
+        <span class="icon">📷</span>
+        <strong>1 - Silo 1</strong>
+        <span>Tue, 08 Sept, 2026</span>
+        <span style="margin-top:6px;font-size:9px;">📅 09:44:41 am · 📍 Bharuch · 📱 Android Phone</span>
+      </div>
+    </div>
+    <div class="panel" style="padding:0;overflow:hidden;">
+      <h3 style="margin:0;padding:10px 14px;border:none;">B · Manpower Deployment 9/8/2026 — 1 report · 0 contractors</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Sl.No</th>
+            <th>Contractor / Agency</th>
+            <th>Skilled</th>
+            <th>Unskilled</th>
+            <th>Operators</th>
+            <th>Supervisors</th>
+            <th>Total</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="8" class="empty-state">No contractor entries today — submit field reports with worker counts to populate this table.</td></tr>
+          <tr style="font-weight:700;background:#e2e8f0!important;">
+            <td colspan="2">TOTAL</td>
+            <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px;padding:0;overflow:hidden;">
+    <h3 style="margin:0;padding:10px 14px;border:none;">C · Plant &amp; Machinery — 3 registered · 0 working today</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Equipment</th>
+          <th>Make / Company</th>
+          <th>Capacity</th>
+          <th>Qty</th>
+          <th>Status Today</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Excavator</td><td>Schwing</td><td>120</td><td>3</td><td><span class="pill idle">○ IDLE</span></td></tr>
+        <tr><td>Transit Mixer</td><td>Tata</td><td>130</td><td>2</td><td><span class="pill idle">○ IDLE</span></td></tr>
+        <tr><td>Vibrator</td><td>Cummins</td><td>65</td><td>2</td><td><span class="pill idle">○ IDLE</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mini-panels">
+    <div class="mini-panel">
+      <strong>D · NFA Approval Status — 0 NFAs tracked</strong>
+      No NFAs available — import the latest data from admin settings.
+    </div>
+    <div class="mini-panel">
+      <strong>E · Drawing Status — 0 categories tracked</strong>
+      No drawing status available — import the latest data from admin settings.
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>Section 2 · Critical Path &amp; Delays · Site Overview</span>
+    <span>Bharuch_R4_Leaptaskflow · Tue, 08 Sept, 2026</span>
+  </footer>
+</section>
+
+<!-- PAGE 3 — ROLLUP & ALL ACTIVITIES -->
+<section class="page">
+  <div class="page-title-row">
+    <h2>Activity Rollup &amp; Register</h2>
+    <span>Tue, 08 Sept, 2026 · Bharuch_R4_Leaptaskflow</span>
+  </div>
+
+  <div class="panel" style="margin-bottom:14px;padding:0;overflow:hidden;">
+    <h3 style="margin:0;padding:10px 14px;border:none;">F · Activity Rollup by Section — 2 sections · 11 active leaf activities · sorted worst SPI first</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Section</th>
+          <th>Activities</th>
+          <th>Done</th>
+          <th>In Progress</th>
+          <th>Not Started</th>
+          <th>Blocked</th>
+          <th>Slipped</th>
+          <th>Critical Path</th>
+          <th>Avg Progress</th>
+          <th>SPI</th>
+          <th>Avg Delay</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2 - Concession Development Phase</td>
+          <td>7</td>
+          <td>—</td>
+          <td>1</td>
+          <td>6</td>
+          <td>6</td>
+          <td>6</td>
+          <td>—</td>
+          <td>64%</td>
+          <td style="color:var(--red);font-weight:700;">0.00</td>
+          <td class="delay-tag">+7d</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>3 - Project Execution</td>
+          <td>4</td>
+          <td>—</td>
+          <td>3</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>—</td>
+          <td>78%</td>
+          <td style="color:var(--red);font-weight:700;">0.07</td>
+          <td class="delay-tag">+199d</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel" style="padding:0;overflow:hidden;">
+    <h3 style="margin:0;padding:10px 14px;border:none;">G · All Active Activities — 11 active leaf activities · grouped by section</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Activity</th>
+          <th>Status</th>
+          <th>Start</th>
+          <th>Due</th>
+          <th>Act. Start</th>
+          <th>Total Qty</th>
+          <th>Cumulative Qty</th>
+          <th>UOM</th>
+          <th>Progress</th>
+          <th>Delay</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="section-header-row">
+          <td colspan="12">▸ 2 - CONCESSION DEVELOPMENT PHASE — 7 ACTIVITIES</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1 - Silo Vendor – Manufacturing of silo materials including Clearance</td>
+          <td><span class="pill progress">In Progress</span></td>
+          <td>14 Jul</td><td>29 Nov</td><td>14 Jul</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td>—</td><td>—</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Dust Extractor - – Advance Payment</td>
+          <td><span class="pill blocked">Blocked</span></td>
+          <td>01 Sept</td><td>14 Sept</td><td>—</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td class="delay-tag">+7d</td><td>—</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Tippler – Release of Order (Cost Comparision , NFA &amp; PO/SO Approvals)</td>
+          <td><span class="pill blocked">Blocked</span></td>
+          <td>01 Sept</td><td>20 Sept</td><td>—</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td class="delay-tag">+7d</td><td>—</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Water tank - Steel - – Advance Payment</td>
+          <td><span class="pill blocked">Blocked</span></td>
+          <td>01 Sept</td><td>14 Sept</td><td>—</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td class="delay-tag">+7d</td><td>—</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>3 - Detailed Drawings – Fire Fighting System with BOQ</td>
+          <td><span class="pill blocked">Blocked</span></td>
+          <td>01 Sept</td><td>08 Sept</td><td>—</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td class="delay-tag">+7d</td><td>—</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>2 - Final / Pre COD Requirement – Power Connection - Application &amp; Approval</td>
+          <td><span class="pill blocked">Blocked</span></td>
+          <td>01 Sept</td><td>30 Sept</td><td>—</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td class="delay-tag">+7d</td><td>—</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>3 - Fire NOC – NoC - Initial - Application &amp; Approval</td>
+          <td><span class="pill blocked">Blocked</span></td>
+          <td>01 Sept</td><td>15 Sept</td><td>—</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td class="delay-tag">+7d</td><td>—</td>
+        </tr>
+        <tr class="section-header-row">
+          <td colspan="12">▸ 3 - PROJECT EXECUTION — 4 ACTIVITIES</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Mid-Term Milestone – Work Hampered due to mismatch of Cumulative Qty executed</td>
+          <td><span class="pill progress">In Progress</span></td>
+          <td>31 Jul</td><td>31 Oct</td><td>31 Jul</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td>—</td><td>—</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>2 - Silo 2 – Silo Dismanthling work</td>
+          <td><span class="pill progress">In Progress</span></td>
+          <td>07 Jul</td><td>13 Nov</td><td>07 Jul</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>14%</td><td>—</td><td>—</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>3 - Silo 3 – Wall (beam) 3rd lift - Reinforcement work</td>
+          <td><span class="pill progress">In Progress</span></td>
+          <td>03 Aug</td><td>06 Nov</td><td>03 Aug</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>3%</td><td>—</td><td>—</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>9 - Bulk loading Silo - 2*50 MT – Ramp (Excavation, Levelling, GSB, Compaction, Brickwork, PCC&amp;CC)</td>
+          <td><span class="pill blocked">Blocked</span></td>
+          <td>21 Feb</td><td>21 Feb</td><td>—</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td>0%</td><td class="delay-tag">+199d</td><td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:12px;display:flex;gap:12px;font-size:10px;color:var(--muted);">
+    <span><strong style="color:var(--text);">7 ACTIVITIES</strong> — 2 - Concession Development Phase</span>
+    <span><strong style="color:var(--text);">4 ACTIVITIES</strong> — 3 - Project Execution</span>
+  </div>
+
+  <footer class="footer">
+    <span>Section 3 · Photos · Manpower · Machinery · NFA · Drawings · Activity Rollup · All Active Activities</span>
+    <span>Bharuch_R4_Leaptaskflow · Tue, 08 Sept, 2026 · LEAP INDIA TASKFLOW</span>
+  </footer>
+</section>
+
+</body>
+</html>

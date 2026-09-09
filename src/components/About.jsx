@@ -88,12 +88,12 @@ export default function About() {
           </ul>
 
           <ul className="mt-6 sm:mt-8 grid grid-cols-1 xs:grid-cols-2 gap-3 text-sm">
-            <li data-reveal className="card p-4">
+            <li data-reveal className="card p-4 ">
               <div className="text-slate-500 text-xs uppercase tracking-widest font-mono">
                 Domains
               </div>
               <div className="mt-2 text-slate-200">
-                IoT · Embedded · Frontend · Data
+                IoT · Embedded · FullStack · Data
               </div>
             </li>
             <li data-reveal className="card p-4">

@@ -7,7 +7,7 @@ import { profile } from '../data/profile'
 export default function Contact() {
   const ref = useScrollReveal({ selector: '[data-reveal]', stagger: 0.09 })
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  // 'idle' | 'sending' | 'sent' | 'error'
+ 
   const [status, setStatus] = useState('idle')
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -20,7 +20,7 @@ export default function Contact() {
     setErrorMsg('')
 
     if (e.target._honey && e.target._honey.value) {
-      setStatus('sent') // silently drop
+      setStatus('sent')
       return
     }
 
